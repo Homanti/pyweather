@@ -19,3 +19,4 @@ class Weather:
 
         else:
             print('Error')
+# 1

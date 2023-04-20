@@ -12,3 +12,4 @@ def get_city():
     ]).json()
     data = response[0]['city']
     return data
+#1

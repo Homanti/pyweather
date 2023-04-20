@@ -190,4 +190,3 @@ btnLocalization.clicked.connect(localization)
 btnGps.clicked.connect(gpssearch)
 win.show()
 app.exec_()
-# 1
