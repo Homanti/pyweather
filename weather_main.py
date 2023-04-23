@@ -53,7 +53,7 @@ win.setWindowTitle("PyWeather")
 win.resize(800, 700)
 
 #додаєм фон
-pixmap = QPixmap("background.png")
+pixmap = QPixmap("data/background.png")
 brush = QBrush(pixmap)
 palette = QPalette()
 palette.setBrush(QPalette.Background, brush)
