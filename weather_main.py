@@ -1,13 +1,17 @@
+#імпорт
 from weather_func import Weather
 from gps import get_city
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+from datetime import datetime
 
+#пусті зміні
 temperature = " "
 humidity = " "
 feelslike = " "
 description = " "
 
+#словник
 words = {
     "lineWeather": "Word your tower",
     "btnLocalization": "Українська",
@@ -17,6 +21,7 @@ words = {
     "labelHumidity": "💦 Humidity: ",
     "labelCity": "🏙️ City: ",
     "btnGps": "📍GPS",
+    "labelTime": "🕘As of: ",
 
     "clear sky": "☀️ Clear sky",
     "few clouds": "🌤️ Few clouds",
@@ -39,11 +44,13 @@ words = {
     "overcast clouds": "☁️ Overcast clouds",
 }
 
+#створення вікна
 app = QApplication([])
 win = QWidget()
 win.setWindowTitle("PyWeather")
 win.resize(800, 700)
 
+#css
 app.setStyleSheet("""
         QWidget {
             background: #25518e;
@@ -77,6 +84,7 @@ app.setStyleSheet("""
         }
         """)
 
+#функція виводу погоди
 def WeatherPrint():
     weathersearch = lineWeather.text()
     searchweather = Weather(weathersearch)
@@ -84,12 +92,16 @@ def WeatherPrint():
     feels_like = searchweather.feels_like
     humidity = searchweather.humidity
     description = searchweather.description
+    now = datetime.now()
+    current_time = now.strftime("%x, %X")
+    labelTime.setText(words["labelTime"] + current_time)
     labelTemp.setText(words["labelTemp"] + temperature + "°")
     labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
     labelHumidity.setText(words["labelHumidity"] + humidity + "°")
     labelCity.setText(words["labelCity"] + weathersearch)
     labelDescription.setText(words[description])
 
+#функція виводу погоди по gps
 def gpssearch():
     city = get_city()
     searchweather = Weather(city)
@@ -97,12 +109,16 @@ def gpssearch():
     feels_like = searchweather.feels_like
     humidity = searchweather.humidity
     description = searchweather.description
+    now = datetime.now()
+    current_time = now.strftime("%x, %X")
+    labelTime.setText(words["labelTime"] + current_time)
     labelTemp.setText(words["labelTemp"] + temperature + "°")
     labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
     labelHumidity.setText(words["labelHumidity"] + humidity + "°")
     labelCity.setText(words["labelCity"] + city)
     labelDescription.setText(words[description])
 
+#створення віджетів
 lineWeather = QLineEdit("")
 lineWeather.setPlaceholderText(words["lineWeather"])
 btnLocalization = QPushButton(words["btnLocalization"])
@@ -116,16 +132,22 @@ labelFeelslike = QLabel(" ")
 labelHumidity = QLabel(" ")
 labelCity = QLabel(" ")
 labelDescription = QLabel(" ")
+labelTime = QLabel(" ")
 
+#відцентрування тексту
+labelTime.setAlignment(Qt.AlignCenter)
 labelCity.setAlignment(Qt.AlignCenter)
 labelHumidity.setAlignment(Qt.AlignCenter)
 labelFeelslike.setAlignment(Qt.AlignCenter)
 labelTemp.setAlignment(Qt.AlignCenter)
 labelDescription.setAlignment(Qt.AlignCenter)
 
+#створення ліній
 mainLine = QVBoxLayout()
 horLine = QHBoxLayout()
 
+#розміщення віджетів на лінії
+mainLine.addWidget(labelTime)
 mainLine.addWidget(labelCity)
 mainLine.addWidget(labelTemp)
 mainLine.addWidget(labelFeelslike)
@@ -140,8 +162,10 @@ horLine.addWidget(btnSearch)
 horLine.addWidget(btnGps)
 horLine.addWidget(btnLocalization)
 
+#розміщення головної лінії
 win.setLayout(mainLine)
 
+#функція локалізації
 def localization():
     global words
     if words["btnLocalization"] == "Українська":
@@ -154,6 +178,7 @@ def localization():
             "labelHumidity": "💦 Вологість: ",
             "labelCity": "🏙️ Місто: ",
             "btnGps": "📍Пошук по геолокації",
+            "labelTime": "🕘Станом на: ",
 
             "clear sky": "☀️ Чисте небо",
             "few clouds": "🌤️ Небагато хмар",
@@ -185,6 +210,7 @@ def localization():
             "labelHumidity": "💦 Humidity: ",
             "labelCity": "🏙️ City: ",
             "btnGps": "📍GPS",
+            "labelTime": "🕘As of: ",
 
             "clear sky": "☀️ Clear sky",
             "few clouds": "🌤️ Few clouds",
@@ -212,8 +238,11 @@ def localization():
     btnSearch.setText(words["btnSearch"])
     btnGps.setText(words["btnGps"])
 
+#прив'язання кнопок до функцій
 btnSearch.clicked.connect(WeatherPrint)
 btnLocalization.clicked.connect(localization)
 btnGps.clicked.connect(gpssearch)
+
+#кінець)
 win.show()
 app.exec_()
