@@ -52,6 +52,7 @@ win = QWidget()
 win.setWindowTitle("PyWeather")
 win.resize(800, 700)
 
+#додаєм фон
 pixmap = QPixmap("background.png")
 brush = QBrush(pixmap)
 palette = QPalette()
