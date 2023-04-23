@@ -2,7 +2,7 @@ import requests
 
 class Weather:
     def __init__(self, city):
-        API = '2b43cec2580bec5ac43abbc4d71380d2'
+        API = 'your api'
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}'
         response = requests.get(url)
         if response.status_code == 200:

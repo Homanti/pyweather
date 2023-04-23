@@ -113,7 +113,7 @@ app.setStyleSheet("""
         }
         """)
 
-#функція виводу погоди
+#функція виводу погоди по назві міста
 def WeatherPrint():
     weathersearch = lineWeather.text()
     searchweather = Weather(weathersearch)
