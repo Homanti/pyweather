@@ -4,6 +4,8 @@ from gps import get_city
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from datetime import datetime
+from PyQt5.QtGui import QBrush, QPixmap, QPalette
+
 
 #пусті зміні
 temperature = " "
@@ -50,11 +52,14 @@ win = QWidget()
 win.setWindowTitle("PyWeather")
 win.resize(800, 700)
 
+pixmap = QPixmap("background.png")
+brush = QBrush(pixmap)
+palette = QPalette()
+palette.setBrush(QPalette.Background, brush)
+win.setPalette(palette)
+
 #css
 app.setStyleSheet("""
-        QWidget {
-            background: #25518e;
-        }
         QLineEdit {
             background: #404040;
             border-radius: 5px;
@@ -79,7 +84,7 @@ app.setStyleSheet("""
             margin: 0px;
         }
         QLabel {
-            color: #B7B7B7;
+            color: #555555;
             font-size: 25px;
         }
         """)
