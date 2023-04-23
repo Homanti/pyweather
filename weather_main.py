@@ -15,7 +15,7 @@ description = " "
 
 #словник
 words = {
-    "lineWeather": "Word your tower",
+    "lineWeather": "Word your city",
     "btnLocalization": "Українська",
     "btnSearch": "🔍 Search",
     "labelTemp": "🌡️ Temperature: ",
@@ -208,7 +208,7 @@ def localization():
         }
     else:
         words = {
-            "lineWeather": "Word your tower",
+            "lineWeather": "Word your city",
             "btnLocalization": "Українська",
             "btnSearch": "🔍 Search",
             "labelTemp": "🌡️ Temperature: ",
