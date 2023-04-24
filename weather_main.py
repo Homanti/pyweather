@@ -114,7 +114,7 @@ app.setStyleSheet("""
             font-size: 25px;
         }
         """)
-
+#функція для очищення тексту
 def ClearText():
     labelTime.setText(" ")
     labelTemp.setText(" ")
@@ -141,8 +141,8 @@ def WeatherPrint():
         labelCity.setText(words["labelCity"] + location)
         labelDescription.setText(words[description])
     except:
-        labelCity.setText(words["labelError"])
         ClearText()
+        labelCity.setText(words["labelError"])
 
 #функція виводу погоди по gps
 def gpssearch():
@@ -162,8 +162,8 @@ def gpssearch():
         labelCity.setText(words["labelCity"] + city)
         labelDescription.setText(words[description])
     except:
-        labelCity.setText(words["labelError2"])
         ClearText()
+        labelCity.setText(words["labelError2"])
 
 #створення віджетів
 lineWeather = QLineEdit("")
