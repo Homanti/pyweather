@@ -111,7 +111,7 @@ app.setStyleSheet("""
         }
         QLabel {
             color: #555555;
-            font-size: 30px;
+            font-size: 25px;
         }
         """)
 #функція для очищення тексту
