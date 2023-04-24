@@ -24,6 +24,8 @@ words = {
     "labelCity": "🏙️ City: ",
     "btnGps": "📍GPS",
     "labelTime": "🕘As of: ",
+    "labelError": "⛔ Error, you probably entered the name of the city incorrectly.",
+    "labelError2": "⛔ Error.",
 
     "clear sky": "☀️ Clear sky",
     "few clouds": "🌤️ Few clouds",
@@ -113,39 +115,55 @@ app.setStyleSheet("""
         }
         """)
 
+def ClearText():
+    labelTime.setText(" ")
+    labelTemp.setText(" ")
+    labelFeelslike.setText(" ")
+    labelHumidity.setText(" ")
+    labelCity.setText(" ")
+    labelDescription.setText(" ")
+
 #функція виводу погоди по назві міста
 def WeatherPrint():
-    weathersearch = lineWeather.text()
-    searchweather = Weather(weathersearch)
-    temperature = searchweather.temp
-    feels_like = searchweather.feels_like
-    humidity = searchweather.humidity
-    description = searchweather.description
-    now = datetime.now()
-    current_time = now.strftime("%x, %X")
-    labelTime.setText(words["labelTime"] + current_time)
-    labelTemp.setText(words["labelTemp"] + temperature + "°")
-    labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
-    labelHumidity.setText(words["labelHumidity"] + humidity + "°")
-    labelCity.setText(words["labelCity"] + weathersearch)
-    labelDescription.setText(words[description])
+    try:
+        location = lineWeather.text()
+        weathersearch = Weather(location)
+        temperature = weathersearch.temp
+        feels_like = weathersearch.feels_like
+        humidity = weathersearch.humidity
+        description = weathersearch.description
+        now = datetime.now()
+        current_time = now.strftime("%x, %X")
+        labelTime.setText(words["labelTime"] + current_time)
+        labelTemp.setText(words["labelTemp"] + temperature + "°")
+        labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
+        labelHumidity.setText(words["labelHumidity"] + humidity + "°")
+        labelCity.setText(words["labelCity"] + location)
+        labelDescription.setText(words[description])
+    except:
+        labelCity.setText(words["labelError"])
+        ClearText()
 
 #функція виводу погоди по gps
 def gpssearch():
-    city = get_city()
-    searchweather = Weather(city)
-    temperature = searchweather.temp
-    feels_like = searchweather.feels_like
-    humidity = searchweather.humidity
-    description = searchweather.description
-    now = datetime.now()
-    current_time = now.strftime("%x, %X")
-    labelTime.setText(words["labelTime"] + current_time)
-    labelTemp.setText(words["labelTemp"] + temperature + "°")
-    labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
-    labelHumidity.setText(words["labelHumidity"] + humidity + "°")
-    labelCity.setText(words["labelCity"] + city)
-    labelDescription.setText(words[description])
+    try:
+        city = get_city()
+        searchweather = Weather(city)
+        temperature = searchweather.temp
+        feels_like = searchweather.feels_like
+        humidity = searchweather.humidity
+        description = searchweather.description
+        now = datetime.now()
+        current_time = now.strftime("%x, %X")
+        labelTime.setText(words["labelTime"] + current_time)
+        labelTemp.setText(words["labelTemp"] + temperature + "°")
+        labelFeelslike.setText(words["labelFeelslike"] + feels_like + "°")
+        labelHumidity.setText(words["labelHumidity"] + humidity + "°")
+        labelCity.setText(words["labelCity"] + city)
+        labelDescription.setText(words[description])
+    except:
+        labelCity.setText(words["labelError2"])
+        ClearText()
 
 #створення віджетів
 lineWeather = QLineEdit("")
@@ -208,6 +226,8 @@ def localization():
             "labelCity": "🏙️ Місто: ",
             "btnGps": "📍Пошук по геолокації",
             "labelTime": "🕘Станом на: ",
+            "labelError": "⛔ Помилка, ймовірно, ви неправильно ввели назву міста.",
+            "labelError2": "⛔ Помилка.",
 
             "clear sky": "☀️ Чисте небо",
             "few clouds": "🌤️ Небагато хмар",
@@ -263,6 +283,8 @@ def localization():
             "labelCity": "🏙️ City: ",
             "btnGps": "📍GPS",
             "labelTime": "🕘As of: ",
+            "labelError": "⛔ Error, you probably entered the name of the city incorrectly.",
+            "labelError2": "⛔ Error.",
 
             "clear sky": "☀️ Clear sky",
             "few clouds": "🌤️ Few clouds",
