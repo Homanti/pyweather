@@ -4,7 +4,7 @@ from gps import get_city
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from datetime import datetime
-from PyQt5.QtGui import QBrush, QPixmap, QPalette
+from PyQt5.QtGui import QBrush, QPixmap, QPalette, QIcon
 
 #пусті зміні
 temperature = " "
@@ -28,6 +28,7 @@ words = {
     "labelError2": "⛔ Error.",
     "btnChange": "Change the theme of the interface",
     "btnSettings": "⚙️ Settings",
+    "settings": "Settings",
 
     "clear sky": "☀️ Clear sky",
     "few clouds": "🌤️ Few clouds",
@@ -92,6 +93,7 @@ def openSettings():
                 "labelError2": "⛔ Помилка.",
                 "btnChange": "Змінити тему інтерфейсу",
                 "btnSettings": "⚙️ Налаштування",
+                "settings": "Налаштування",
 
                 "clear sky": "☀️ Чисте небо",
                 "few clouds": "🌤️ Небагато хмар",
@@ -151,6 +153,7 @@ def openSettings():
                 "labelError2": "⛔ Error.",
                 "btnChange": "Change the theme of the interface",
                 "btnSettings": "⚙️ Settings",
+                "settings": "Settings",
 
                 "clear sky": "☀️ Clear sky",
                 "few clouds": "🌤️ Few clouds",
@@ -202,36 +205,47 @@ def openSettings():
         btnSettings.setText(words["btnSettings"])
         btnLocalization.setText(words["btnLocalization"])
         btnChange.setText(words["btnChange"])
+        dialog.setWindowTitle(words["settings"])
 
+    #створюєм вікно для налаштувань
     dialog = QDialog()
-    dialog.setWindowTitle("Settings")
-    dialog.resize(300, 100)
+    dialog.setWindowTitle(words["settings"])
+    dialog.setFixedSize(300, 130)
+    dialog.setWindowIcon(QIcon("data/icon.png"))
     layout = QVBoxLayout()
 
+    #додаєм фон
     pixmap = QPixmap("data/background.png")
     brush = QBrush(pixmap)
     palette = QPalette()
     palette.setBrush(QPalette.Background, brush)
     dialog.setPalette(palette)
 
+    #створюєм кнопки
     btnLocalization = QPushButton(words['btnLocalization'])
     btnChange = QPushButton(words['btnChange'])
 
+    #додаєм кнопки на лінію
     layout.addWidget(btnLocalization)
     layout.addWidget(btnChange)
 
+    #підключаєм кнопки до функцій
     btnLocalization.clicked.connect(localization)
     btnChange.clicked.connect(Change)
 
+    #додаєм лінію на вікно
     dialog.setLayout(layout)
-    dialog.exec_()
 
+    #кінець)
+    dialog.exec_()
+#---------------------------------------------------------------
 
 #створення вікна
 app = QApplication([])
 win = QWidget()
 win.setWindowTitle("PyWeather")
-win.resize(800, 700)
+win.setFixedSize(800, 700)
+win.setWindowIcon(QIcon("data/icon.png"))
 
 #додаєм фон
 pixmap = QPixmap("data/background.png")
