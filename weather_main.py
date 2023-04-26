@@ -27,7 +27,7 @@ words = {
     "labelError": "⛔ Error, you probably entered the name of the city incorrectly.",
     "labelError2": "⛔ Error.",
     "btnChange": "Change the theme of the interface",
-    "btnSettings": "Settings",
+    "btnSettings": "⚙️ Settings",
 
     "clear sky": "☀️ Clear sky",
     "few clouds": "🌤️ Few clouds",
@@ -91,7 +91,7 @@ def openSettings():
                 "labelError": "⛔ Помилка, ймовірно, ви неправильно ввели назву міста.",
                 "labelError2": "⛔ Помилка.",
                 "btnChange": "Змінити тему інтерфейсу",
-                "btnSettings": "Налаштування",
+                "btnSettings": "⚙️ Налаштування",
 
                 "clear sky": "☀️ Чисте небо",
                 "few clouds": "🌤️ Небагато хмар",
@@ -150,7 +150,7 @@ def openSettings():
                 "labelError": "⛔ Error, you probably entered the name of the city incorrectly.",
                 "labelError2": "⛔ Error.",
                 "btnChange": "Change the theme of the interface",
-                "btnSettings": "Settings",
+                "btnSettings": "⚙️ Settings",
 
                 "clear sky": "☀️ Clear sky",
                 "few clouds": "🌤️ Few clouds",
