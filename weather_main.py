@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt
 from datetime import datetime
 from PyQt5.QtGui import QBrush, QPixmap, QPalette, QIcon
 
-#зміні
+#змініa
 temperature = " "
 humidity = " "
 feelslike = " "
