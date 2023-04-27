@@ -1,5 +1,7 @@
 #імпорт
 import json
+import wget
+import os.path
 from weather_func import Weather
 from gps import get_city
 from PyQt5.QtWidgets import *
@@ -14,6 +16,34 @@ feelslike = " "
 description = " "
 theme = "background1"
 language = "english"
+src_icon = 'icon.png'
+dest_icon = 'data/icon.png'
+icon_check = os.path.exists(dest_icon)
+src_background = 'background.png'
+dest_background = 'data/background.png'
+background_check = os.path.exists(dest_background)
+path_folder = 'data'
+folder_check = os.path.exists(path_folder)
+
+#перевірка існування папки якщо не існує створити
+if folder_check == True:
+    pass
+else:
+    os.mkdir('data')
+
+#перевірка існування іконки якщо не існує створити
+if icon_check == True:
+    pass
+else:
+    wget.download('https://drive.google.com/u/1/uc?id=1hbapAQ1j4AX2gZ0qIDtL_vzpYbr6S4ry&export=download')
+    os.replace(src_icon, dest_icon)
+
+#перевірка існування фону якщо не існує створити
+if background_check == True:
+    pass
+else:
+    wget.download('https://drive.google.com/u/1/uc?id=1kwoltC5sm2LkjFtQj6T_ht6WYU9v_U_U&export=download')
+    os.replace(src_background, dest_background)
 
 #перевіряєм чи існує файл с мовою якщо ні то створюєм
 try:
